@@ -17,13 +17,16 @@ h1,h2,p,dt,dd,a,b,.kicker,.hint{font-family:var(--font);font-weight:700;font-sty
 
 .nav{position:fixed;inset:0 0 auto 0;z-index:30;display:flex;justify-content:space-between;align-items:center;
   padding:18px clamp(20px,4vw,56px);background:rgba(236,219,195,calc(.58*var(--na,0)));backdrop-filter:blur(calc(10px*var(--na,0))) saturate(calc(1 + .2*var(--na,0)));-webkit-backdrop-filter:blur(calc(10px*var(--na,0))) saturate(calc(1 + .2*var(--na,0)));border-bottom:1px solid rgba(22,16,12,calc(.08*var(--na,0)));font-size:16px;letter-spacing:.04em}
+@property --na{syntax:'<number>';inherits:true;initial-value:0}
+.nav{--na:0;transition:--na .6s ease}
+.nav.show{--na:1}
 .title-slot{display:inline-block;max-width:100%}
-.nav b{opacity:0;font-size:20px;color:var(--ink)}
+.nav b{white-space:nowrap;flex:none;opacity:var(--na,0);transform:translateY(calc((1 - var(--na,0)) * 6px));font-size:20px;color:var(--ink)}
 .nav a{color:var(--ink);text-decoration:none;margin-left:28px;transition:opacity .2s}
 .nav a:hover{opacity:.55}
 
 /* ---------- первый экран ---------- */
-h1{position:fixed;left:0;top:0;transform-origin:0 0;z-index:31;pointer-events:none;will-change:transform;visibility:hidden;font-size:clamp(30px,9.4vw,84px);line-height:1;letter-spacing:-.01em;white-space:nowrap;color:var(--ink)}
+h1{font-size:clamp(30px,9.4vw,84px);line-height:1;letter-spacing:-.01em;white-space:nowrap;color:var(--ink)}
 
 /* ---------- пакет и кофемашина (статично) ---------- */
 .row{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;gap:6vw;align-items:center;padding:96px clamp(20px,6vw,90px)}
@@ -79,7 +82,7 @@ footer .bottom{grid-column:1/-1;border-top:1px solid rgba(22,16,12,.15);padding-
 }
 
 #hero{position:relative;height:100vh;height:100svh;overflow:hidden}
-#hero .title-slot{position:absolute;left:50%;top:54%;display:block}
+#hero .title-slot{position:absolute;left:50%;top:54%;transform:translate(-50%,-50%);z-index:3;display:block}
 .bg{position:absolute;inset:0;background:#e08a3c}
 .bg img{position:absolute;left:0;top:0;width:100%;height:auto;min-height:66%;object-fit:cover;display:block;-webkit-mask-image:linear-gradient(to bottom,#000 55%,transparent 100%);mask-image:linear-gradient(to bottom,#000 55%,transparent 100%)}
 .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(238,150,66,.78) 0%,rgba(236,146,62,.82) 55%,#e48c3d 82%)}
@@ -686,33 +689,11 @@ const skipIntro = () => {
   try { sessionStorage.setItem('introDone', '1'); } catch (e) {}
 };
 
-/* ---------- единое название: из первого экрана плавно уезжает в шапку; шапка проявляется ---------- */
+/* ---------- шапка: название проявляется в ней, когда первый экран пролистан до конца ---------- */
 {
-  const h1 = document.getElementById('title'), slot = document.getElementById('title-slot');
-  const navEl = document.querySelector('.nav'), navB = document.querySelector('.nav b');
-  let w1 = 0, h1h = 0, fs0 = 1, fsN = 1;
-  const measureT = () => {
-    h1.style.transform = 'none';
-    w1 = h1.offsetWidth; h1h = h1.offsetHeight;
-    slot.style.width = w1 + 'px'; slot.style.height = h1h + 'px'; slot.style.marginLeft = (-w1 / 2) + 'px'; slot.style.marginTop = (-h1h / 2) + 'px';
-    fs0 = parseFloat(getComputedStyle(h1).fontSize); fsN = parseFloat(getComputedStyle(navB).fontSize);
-  };
-  const sm = x => x * x * (3 - 2 * x);
-  const frameT = () => {
-    const r = slot.getBoundingClientRect(), nb = navB.getBoundingClientRect();
-    const cyN = nb.top + nb.height / 2, cy0 = r.top + h1h / 2;
-    const total = (r.top + scrollY + h1h / 2) - cyN;
-    const tt = clamp(total > 0 ? scrollY / total : 1);
-    const e = sm(tt), sc = lerp(1, fsN / fs0, e);
-    const x = lerp(r.left, nb.left, e), cy = Math.max(cy0, cyN);
-    h1.style.transform = `translate(${x.toFixed(1)}px, ${(cy - h1h * sc / 2).toFixed(1)}px) scale(${sc.toFixed(4)})`;
-    h1.style.visibility = 'visible';
-    navEl.style.setProperty('--na', sm(clamp((tt - .1) / .7)).toFixed(3));   // шапка в начале полностью прозрачная
-  };
-  const runT = () => { measureT(); frameT(); };
-  runT(); addEventListener('resize', runT); addEventListener('load', runT);
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(runT);
-  addEventListener('scroll', frameT, {passive:true});
+  const navEl = document.querySelector('.nav'), heroEl = document.getElementById('hero');
+  const upd = () => navEl.classList.toggle('show', scrollY >= heroEl.offsetHeight - 90);
+  upd(); addEventListener('scroll', upd, {passive:true}); addEventListener('resize', upd); addEventListener('load', upd);
   // нажатие на пункт шапки: вступление пропускается, страница плавно едет к блоку
   document.querySelectorAll('.nav a, footer a[href^="#"]').forEach(a => a.addEventListener('click', e => {
     const id = a.getAttribute('href'); const target = id && id[0] === '#' ? document.querySelector(id) : null;
