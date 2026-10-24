@@ -801,7 +801,7 @@ renderCat(currentCat);
 if (!reduce) {
   const menuEl = document.getElementById('menu');
   const flat = c => { c.style.setProperty('--rx', '0deg'); c.style.setProperty('--ry', '0deg'); c.classList.remove('hot'); };
-  let raf = 0, mx = 0, my = 0;
+  let raf = 0, mx = 0, my = 0, touching = false;
   const apply = () => {
     raf = 0;
     dishes.forEach(c => {
@@ -811,13 +811,12 @@ if (!reduce) {
       const dx = (mx - (r.left + r.width / 2)) / r.width, dy = (my - (r.top + r.height / 2)) / r.height;
       const inside = Math.abs(dx) <= .5 && Math.abs(dy) <= .5;
       const near = Math.max(0, 1 - Math.hypot(dx, dy) / 2.6);              // чем дальше плашка от курсора, тем слабее наклон
-      const k = inside ? 22 : 13 * near;
+      const k = (inside ? 17 : 10 * near) * (touching ? .65 : 1);   // наклон: мышь мягче, палец ещё мягче
       c.style.setProperty('--ry', (Math.max(-1.6, Math.min(1.6, dx)) * k * (inside ? 1 : .6)).toFixed(2) + 'deg');
       c.style.setProperty('--rx', (-Math.max(-1.6, Math.min(1.6, dy)) * k * (inside ? 1 : .6)).toFixed(2) + 'deg');
       c.classList.toggle('hot', inside);
     });
   };
-  let touching = false;
   const release = () => { touching = false; if (raf) cancelAnimationFrame(raf); raf = 0; dishes.forEach(flat); };
   menuEl.addEventListener('pointerdown', e => {                       // палец: плашка под пальцем светлеет и наклоняется, пока он прижат
     if (e.pointerType !== 'touch') return;
