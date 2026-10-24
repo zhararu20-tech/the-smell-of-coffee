@@ -287,6 +287,8 @@ footer .bottom{border-top:1px solid rgba(255,254,253,.16);color:rgba(255,254,253
 @media (prefers-reduced-motion:reduce){.sign .cline,.sign .cfill{animation:none}}
 .nav b span{font-family:'Montserrat','Nunito',sans-serif;font-weight:300;text-transform:uppercase;letter-spacing:.09em;font-size:.82em}
 footer .brand{font-family:'Montserrat','Nunito',sans-serif;font-weight:300;text-transform:uppercase;letter-spacing:.09em;font-size:clamp(26px,7vw,36px)}
+.dish.glow{background:#fffefb;box-shadow:0 1px 0 rgba(22,16,12,.06),0 20px 36px -16px rgba(22,16,12,.45),0 0 0 1px rgba(255,255,255,.9)}
+.dish.ready{transition:transform .2s ease-out,background-color .5s ease,box-shadow .5s ease}
 </style>
 </head>
 <body>
@@ -982,6 +984,17 @@ const io = new IntersectionObserver(entries => {
     en.target.classList.add('in'); makeReady(en.target); io.unobserve(en.target);
   });
 }, {threshold: .25});
+/* телефон: при прокрутке плашки по очереди слева направо вспыхивают белым (отключается: GLOW_TOUCH = false) */
+const GLOW_TOUCH = true;
+const touchOnly = matchMedia('(hover:none)').matches;
+const glowIO = (GLOW_TOUCH && touchOnly && 'IntersectionObserver' in window) ? new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    if (!en.isIntersecting) return;
+    const c = en.target; glowIO.unobserve(c);
+    const col = dishes.indexOf(c) % 2;
+    setTimeout(() => { c.classList.add('glow'); setTimeout(() => c.classList.remove('glow'), 1100); }, 350 + col * 260);
+  });
+}, {threshold: .6}) : null;
 let currentCat = MENU[0].id, firstRender = true;
 const renderCat = id => {
   const cat = MENU.find(c => c.id === id); currentCat = id;
@@ -992,6 +1005,7 @@ const renderCat = id => {
     c.innerHTML = `<div class="dimg">${it.art}</div><div class="drow"><h3>${it.name}</h3><span class="price">${priceText(it)}</span></div>`;
     grid.appendChild(c); dishes.push(c);
   });
+  if (glowIO) { glowIO.disconnect(); dishes.forEach(c => glowIO.observe(c)); }
   if (firstRender) {                                           // при первом показе: плашки появляются по одной и только один раз
     firstRender = false;
     if (seen) dishes.forEach(c => { c.style.transition = 'none'; c.classList.add('in', 'ready'); });
