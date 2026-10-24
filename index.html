@@ -761,13 +761,18 @@ const grid = document.getElementById('grid'), dishes = [];
 const SIZE_LABELS = {1: ['Порция'], 2: ['Малый', 'Большой'], 3: ['Малый', 'Средний', 'Большой']};
 const priceText = it => it.extra ? '+' + it.prices[0] + ' ₽' : (it.prices.length > 1 ? 'от ' : '') + it.prices[0] + ' ₽';
 const sizeLabels = it => it.extra ? ['К напитку'] : SIZE_LABELS[it.prices.length];
-const makeReady = c => c.addEventListener('transitionend', e => { if (e.propertyName === 'transform') c.classList.add('ready'); }, {once: true});
+const makeReady = c => {
+  let t = 0;
+  const done = () => { c.classList.add('ready'); c.removeEventListener('transitionend', on); clearTimeout(t); };
+  const on = e => { if (e.propertyName === 'transform') done(); };
+  c.addEventListener('transitionend', on); t = setTimeout(done, 1700);
+};
 const io = new IntersectionObserver(entries => {
   entries.forEach(en => {
     if (!en.isIntersecting) return;
     const i = dishes.indexOf(en.target);
     en.target.style.setProperty('--d', ((i % 3) * .12 + Math.floor(i / 3) * .06).toFixed(2) + 's');
-    en.target.classList.add('in'); io.unobserve(en.target);
+    en.target.classList.add('in'); makeReady(en.target); io.unobserve(en.target);
   });
 }, {threshold: .25});
 let currentCat = MENU[0].id, firstRender = true;
@@ -783,7 +788,7 @@ const renderCat = id => {
   if (firstRender) {                                           // при первом показе: плашки появляются по одной и только один раз
     firstRender = false;
     if (seen) dishes.forEach(c => { c.style.transition = 'none'; c.classList.add('in', 'ready'); });
-    else dishes.forEach(c => { io.observe(c); makeReady(c); });
+    else dishes.forEach(c => io.observe(c));
   } else {                                                     // смена категории: новые плашки сразу, по очереди
     requestAnimationFrame(() => requestAnimationFrame(() => dishes.forEach((c, i) => {
       c.style.setProperty('--d', (i * .06).toFixed(2) + 's'); makeReady(c); c.classList.add('in');
@@ -793,7 +798,7 @@ const renderCat = id => {
 renderCat(currentCat);
 
 /* плашки меню наклоняются в сторону курсора, плашка под курсором светлеет */
-if (!reduce && matchMedia('(hover:hover)').matches) {
+if (!reduce) {
   const menuEl = document.getElementById('menu');
   const flat = c => { c.style.setProperty('--rx', '0deg'); c.style.setProperty('--ry', '0deg'); c.classList.remove('hot'); };
   let raf = 0, mx = 0, my = 0;
@@ -812,11 +817,19 @@ if (!reduce && matchMedia('(hover:hover)').matches) {
       c.classList.toggle('hot', inside);
     });
   };
+  let touching = false;
+  const release = () => { touching = false; if (raf) cancelAnimationFrame(raf); raf = 0; dishes.forEach(flat); };
+  menuEl.addEventListener('pointerdown', e => {                       // палец: плашка под пальцем светлеет и наклоняется, пока он прижат
+    if (e.pointerType !== 'touch') return;
+    touching = true; mx = e.clientX; my = e.clientY; if (!raf) raf = requestAnimationFrame(apply);
+  });
   menuEl.addEventListener('pointermove', e => {
-    if (e.pointerType === 'touch') return;
+    if (e.pointerType === 'touch' && !touching) return;
     mx = e.clientX; my = e.clientY; if (!raf) raf = requestAnimationFrame(apply);
   });
-  menuEl.addEventListener('pointerleave', () => { if (raf) cancelAnimationFrame(raf); raf = 0; dishes.forEach(flat); });
+  menuEl.addEventListener('pointerleave', e => { if (e.pointerType !== 'touch') release(); });
+  addEventListener('pointerup', e => { if (e.pointerType === 'touch') release(); });
+  addEventListener('pointercancel', release);                         // начали прокручивать страницу: плашки выпрямляются
   // перед открытием окна плашка выпрямляется, чтобы окно выросло ровно из неё
   grid.addEventListener('click', e => { const c = e.target.closest('.dish'); if (c) { c.style.transition = 'none'; flat(c); void c.offsetWidth; } }, true);
 }
