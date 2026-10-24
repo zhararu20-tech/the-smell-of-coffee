@@ -285,6 +285,8 @@ footer .bottom{border-top:1px solid rgba(255,254,253,.16);color:rgba(255,254,253
 @keyframes cupdraw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
 @keyframes cupfill{from{opacity:0}to{opacity:1}}
 @media (prefers-reduced-motion:reduce){.sign .cline,.sign .cfill{animation:none}}
+.nav b span{font-family:'Montserrat','Nunito',sans-serif;font-weight:300;text-transform:uppercase;letter-spacing:.09em;font-size:.82em}
+footer .brand{font-family:'Montserrat','Nunito',sans-serif;font-weight:300;text-transform:uppercase;letter-spacing:.09em;font-size:clamp(26px,7vw,36px)}
 </style>
 </head>
 <body>
@@ -564,9 +566,9 @@ setAspect(); addEventListener('resize', setAspect); addEventListener('load', set
 {
   const t = document.createElementNS(NS, 'text');
   t.setAttribute('x','800'); t.setAttribute('y','362'); t.setAttribute('text-anchor','middle');
-  t.setAttribute('font-family',"'Nunito', sans-serif"); t.setAttribute('font-weight','700');
-  t.setAttribute('font-size','122'); t.setAttribute('letter-spacing','4');
-  t.setAttribute('fill', BG); t.setAttribute('stroke', INK); t.setAttribute('stroke-width','3.4'); t.setAttribute('paint-order','stroke fill'); t.setAttribute('stroke-linejoin','round'); t.setAttribute('opacity','1');
+  t.setAttribute('font-family',"'Montserrat', 'Nunito', sans-serif"); t.setAttribute('font-weight','300');
+  t.setAttribute('font-size','98'); t.setAttribute('letter-spacing','9');
+  t.setAttribute('fill', INK); t.setAttribute('stroke', BG); t.setAttribute('stroke-width','14'); t.setAttribute('paint-order','stroke fill'); t.setAttribute('stroke-linejoin','round'); t.setAttribute('opacity','1');
   t.textContent = 'ЗАПАХ КОФЕ';
   cafe.g.appendChild(t);
   cafe.name = t;
