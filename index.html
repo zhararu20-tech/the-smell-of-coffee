@@ -3,6 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+/* обновление страницы всегда начинается с первого экрана (в самом начале, чтобы не зависеть от остального кода) */
+try { history.scrollRestoration = 'manual'; } catch (e) {}
+(function () {
+  var nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+  if (nav && nav.type === 'reload' && location.hash) { try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {} }
+  if (location.hash) return;
+  var moved = false, top = function () { if (!moved) scrollTo(0, 0); };
+  top(); addEventListener('DOMContentLoaded', top); addEventListener('load', top); addEventListener('pageshow', top);
+  [120, 400, 900, 1600].forEach(function (t) { setTimeout(top, t); });
+  ['wheel', 'touchstart', 'keydown', 'pointerdown'].forEach(function (ev) { addEventListener(ev, function () { moved = true; }, {once: true, passive: true}); });
+})();
+</script>
 <title>Запах кофе — кофейня</title>
 <meta name="description" content="Кофейня «Запах кофе»: кофе, свежая выпечка и десерты каждый день. Три точки в Балашихе и Ногинске.">
 <meta name="theme-color" content="#e48c3d">
