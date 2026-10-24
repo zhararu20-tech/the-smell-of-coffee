@@ -289,6 +289,7 @@ footer .bottom{border-top:1px solid rgba(255,254,253,.16);color:rgba(255,254,253
 footer .brand{font-family:'Montserrat','Nunito',sans-serif;font-weight:300;text-transform:uppercase;letter-spacing:.09em;font-size:clamp(26px,7vw,36px)}
 .dish.glow{background:#fffefb;box-shadow:0 1px 0 rgba(22,16,12,.06),0 20px 36px -16px rgba(22,16,12,.45),0 0 0 1px rgba(255,255,255,.9)}
 .dish.ready{transition:transform .2s ease-out,background-color .5s ease,box-shadow .5s ease}
+@media (hover:none){.dish{opacity:1;transform:none;transition:background-color .2s ease,box-shadow .2s ease}.dish.in{transform:none}.dish.ready{transition:background-color .2s ease,box-shadow .2s ease;will-change:auto}}
 </style>
 </head>
 <body>
@@ -985,7 +986,7 @@ const io = new IntersectionObserver(entries => {
   });
 }, {threshold: .25});
 /* телефон: при прокрутке плашки по очереди слева направо вспыхивают белым (отключается: GLOW_TOUCH = false) */
-const GLOW_TOUCH = true;
+const GLOW_TOUCH = false;
 const touchOnly = matchMedia('(hover:none)').matches;
 const glowIO = (GLOW_TOUCH && touchOnly && 'IntersectionObserver' in window) ? new IntersectionObserver(entries => {
   entries.forEach(en => {
@@ -1006,6 +1007,7 @@ const renderCat = id => {
     grid.appendChild(c); dishes.push(c);
   });
   if (glowIO) { glowIO.disconnect(); dishes.forEach(c => glowIO.observe(c)); }
+  if (touchOnly) { dishes.forEach(c => c.classList.add('in', 'ready')); firstRender = false; return; }   // телефон: плашки сразу на месте, без анимаций
   if (firstRender) {                                           // при первом показе: плашки появляются по одной и только один раз
     firstRender = false;
     if (seen) dishes.forEach(c => { c.style.transition = 'none'; c.classList.add('in', 'ready'); });
@@ -1019,7 +1021,12 @@ const renderCat = id => {
 renderCat(currentCat);
 
 /* плашки меню наклоняются в сторону курсора, плашка под курсором светлеет */
-if (!reduce) {
+if (touchOnly) {                                                      // телефон: без наклона, плашка под пальцем только светлеет, пока её нажимают
+  let held = null;
+  const drop = () => { if (held) held.classList.remove('hot'); held = null; };
+  grid.addEventListener('pointerdown', e => { const c = e.target.closest('.dish'); if (c) { drop(); held = c; c.classList.add('hot'); } });
+  addEventListener('pointerup', drop); addEventListener('pointercancel', drop);
+} else if (!reduce) {
   const menuEl = document.getElementById('menu');
   const flat = c => { c.style.setProperty('--rx', '0deg'); c.style.setProperty('--ry', '0deg'); c.classList.remove('hot'); };
   let raf = 0, mx = 0, my = 0, touching = false;
