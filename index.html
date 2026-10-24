@@ -344,7 +344,7 @@ setAspect(); addEventListener('resize', setAspect);
   t.setAttribute('x','800'); t.setAttribute('y','362'); t.setAttribute('text-anchor','middle');
   t.setAttribute('font-family',"'Roboto Condensed', sans-serif"); t.setAttribute('font-weight','700');
   t.setAttribute('font-size','122'); t.setAttribute('letter-spacing','4');
-  t.setAttribute('fill','none'); t.setAttribute('stroke', INK); t.setAttribute('stroke-width','2'); t.setAttribute('opacity','1');
+  t.setAttribute('fill', BG); t.setAttribute('stroke', INK); t.setAttribute('stroke-width','3.4'); t.setAttribute('paint-order','stroke fill'); t.setAttribute('stroke-linejoin','round'); t.setAttribute('opacity','1');
   t.textContent = 'ЗАПАХ КОФЕ';
   cafe.g.appendChild(t);
   cafe.name = t;
