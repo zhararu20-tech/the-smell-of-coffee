@@ -183,9 +183,9 @@ footer .bottom{grid-column:1/-1;border-top:1px solid rgba(22,16,12,.15);padding-
 .pcar .card.on{transform:none;opacity:1;cursor:default}
 .pcar .card:not(.on) .slides{pointer-events:none}
 .card .ph{position:relative}
-.slides{display:flex;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;cursor:grab}
+.slides{display:flex;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;cursor:grab;touch-action:pan-x pan-y}
 .slides::-webkit-scrollbar{display:none}
-.slides img{flex:0 0 100%;width:100%;height:100%;object-fit:cover;scroll-snap-align:center;scroll-snap-stop:always;user-select:none}
+.slides img{-webkit-user-drag:none;pointer-events:none;flex:0 0 100%;width:100%;height:100%;object-fit:cover;scroll-snap-align:center;scroll-snap-stop:always;user-select:none}
 .dots{position:absolute;left:0;right:0;bottom:10px;display:flex;justify-content:center;gap:6px;pointer-events:none}
 .dots[hidden]{display:none}
 .dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,254,253,.55);box-shadow:0 1px 4px rgba(22,16,12,.35);transition:background-color .25s,transform .25s}
@@ -1180,11 +1180,40 @@ const POINTS = [
   cardsEl.forEach(c => {
     const sl = c.querySelector('.slides');
     sl.addEventListener('scroll', () => mark(c), {passive: true});
-    let down = false, sx = 0, sl0 = 0, moved = 0;
-    sl.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') return; down = true; moved = 0; sx = e.clientX; sl0 = sl.scrollLeft; sl.style.scrollSnapType = 'none'; sl.setPointerCapture(e.pointerId); });
-    sl.addEventListener('pointermove', e => { if (!down) return; moved = Math.max(moved, Math.abs(e.clientX - sx)); sl.scrollLeft = sl0 - (e.clientX - sx); });
-    const up = () => { if (!down) return; down = false; sl.style.scrollSnapType = ''; sl.scrollTo({left: Math.round(sl.scrollLeft / sl.clientWidth) * sl.clientWidth, behavior: 'smooth'}); };
+    // мышь: тянем фото рукой, отпускаем: долетает до ближайшего кадра плавным движением (без рывков)
+    let down = false, drag = false, sx = 0, sl0 = 0, lx = 0, lt = 0, vel = 0, anim = 0;
+    const stop = () => { if (anim) cancelAnimationFrame(anim); anim = 0; };
+    const glide = to => {
+      stop(); const from = sl.scrollLeft, t0 = performance.now(), dur = Math.min(520, 180 + Math.abs(to - from) * .6);
+      const step = now => {
+        const t = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - t, 3);
+        sl.scrollLeft = from + (to - from) * e;
+        if (t < 1) anim = requestAnimationFrame(step); else { anim = 0; sl.style.scrollSnapType = ''; }
+      };
+      anim = requestAnimationFrame(step);
+    };
+    sl.addEventListener('dragstart', e => e.preventDefault());
+    sl.addEventListener('pointerdown', e => {
+      if (e.pointerType !== 'mouse' || e.button !== 0) return;
+      e.preventDefault(); stop(); down = true; drag = false; sx = lx = e.clientX; lt = e.timeStamp; vel = 0; sl0 = sl.scrollLeft;
+      sl.style.scrollSnapType = 'none';
+    });
+    sl.addEventListener('pointermove', e => {
+      if (!down) return;
+      if (!drag && Math.abs(e.clientX - sx) > 4) { drag = true; sl.setPointerCapture(e.pointerId); sl.style.cursor = 'grabbing'; }
+      if (!drag) return;
+      const dt = Math.max(1, e.timeStamp - lt); vel = vel * .6 + ((e.clientX - lx) / dt) * .4; lx = e.clientX; lt = e.timeStamp;
+      sl.scrollLeft = sl0 - (e.clientX - sx);
+    });
+    const up = () => {
+      if (!down) return; down = false; sl.style.cursor = '';
+      const w = sl.clientWidth, n = sl.children.length;
+      let k = sl.scrollLeft / w;
+      k = Math.abs(vel) > .35 ? (vel < 0 ? Math.ceil(k - .02) : Math.floor(k + .02)) : Math.round(k);   // быстрый взмах листает дальше
+      glide(Math.max(0, Math.min(n - 1, k)) * w);
+    };
     sl.addEventListener('pointerup', up); sl.addEventListener('pointercancel', up);
+    sl.addEventListener('wheel', stop, {passive: true});
     refreshDots(c);
   });
   // Добавить фото точке: addPointPhoto(индекс точки 0..2, 'data:image/webp;base64,…' или адрес картинки)
