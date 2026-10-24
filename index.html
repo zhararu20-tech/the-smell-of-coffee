@@ -99,37 +99,43 @@ footer .bottom{grid-column:1/-1;border-top:1px solid rgba(22,16,12,.15);padding-
 .cap{position:absolute;left:50%;top:50%;transform-origin:0 0;font-size:11px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;color:#111;opacity:.9}
 #menu{position:relative;background:#fffefd;color:#16100c;padding:72px 20px 96px}
 #menu h2{font-size:clamp(34px,8vw,64px);margin-bottom:28px;text-align:center}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:960px;margin:0 auto}
-.dish{aspect-ratio:1/1;border-radius:26px;background:#f6efe5;padding:16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 1px 0 rgba(22,16,12,.06),0 12px 28px -18px rgba(22,16,12,.4);opacity:0;transform:translateY(46px) scale(.94);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;max-width:960px;margin:0 auto}
 .dish.in{opacity:1;transform:perspective(800px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg))}
 .dish.ready{transition:transform .2s ease-out,background-color .3s ease,box-shadow .3s ease;transition-delay:0s;will-change:transform}
 .dish.hot{background:#fffaf2;box-shadow:0 1px 0 rgba(22,16,12,.06),0 22px 38px -18px rgba(22,16,12,.5)}
-.dish h3{font-size:22px;line-height:1.05}
-.dish p{margin-top:8px;font-size:13px;line-height:1.3;color:#4f4237;font-weight:700}
-.dish .price{font-size:18px}
-@media (min-width:800px){.grid{grid-template-columns:repeat(3,1fr);gap:20px}}
+@media (min-width:800px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}}
 .dish{cursor:pointer;-webkit-tap-highlight-color:transparent}
 .dish:focus-visible{outline:3px solid #e48c3d;outline-offset:3px}
 .dish.open{visibility:hidden}
 .scrim{position:fixed;inset:0;z-index:50;background:rgba(30,12,2,.62);opacity:0;pointer-events:none;transition:opacity .35s ease}
 .scrim.on{opacity:1;pointer-events:auto}
-.panel{position:fixed;z-index:51;left:50%;top:50%;width:min(92vw,520px);max-height:82vh;max-height:82svh;margin:0;transform:translate(-50%,-50%);background:#fffefd;color:#16100c;border-radius:30px;box-shadow:0 30px 80px rgba(20,8,0,.45);display:none;flex-direction:column;overflow:hidden}
-.panel.on{display:flex}
-.panel .bar{display:flex;justify-content:space-between;align-items:center;padding:18px 18px 8px 24px}
-.panel .bar h3{font-size:28px;line-height:1.05}
-.panel .x{flex:none;width:40px;height:40px;border-radius:50%;border:0;background:#f1e7da;color:#16100c;font:700 22px/1 var(--font);cursor:pointer}
-.panel .x:focus-visible{outline:3px solid #e48c3d}
-.panel .scroll{overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:6px 24px 28px}
-.panel .mass{font-size:15px;color:#4f4237;margin-bottom:16px}
 .kbju{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:22px}
 .kbju div{background:#f6efe5;border-radius:18px;padding:12px 6px;text-align:center}
 .kbju b{display:block;font-size:24px;line-height:1}
 .kbju span{display:block;margin-top:5px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#4f4237}
-.panel h4{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#4f4237;margin:20px 0 8px}
-.panel p{font-size:17px;line-height:1.45;font-weight:700}
-.panel .note{margin-top:22px;font-size:13px;color:#7a6554}
-.panel .inner{opacity:0}
 @media (prefers-reduced-motion:reduce){.spin{animation:none}.dish{transition:none;opacity:1;transform:none}.dish.in{transform:none}}
+
+.dish{border-radius:26px;background:#f6efe5;padding:12px;display:flex;flex-direction:column;gap:12px;box-shadow:0 1px 0 rgba(22,16,12,.06),0 12px 28px -18px rgba(22,16,12,.4);opacity:0;transform:translateY(46px) scale(.94);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
+.dimg,.pimg{aspect-ratio:1/1;border-radius:18px;background:linear-gradient(160deg,#fbf1e1,#f0dcc0);display:grid;place-items:center;overflow:hidden;flex:none}
+.dimg svg,.pimg svg{width:76%;height:76%;filter:drop-shadow(0 10px 10px rgba(60,30,8,.25));overflow:visible}
+.dimg img,.pimg img{width:100%;height:100%;object-fit:cover;display:block}
+.drow,.prow{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:0 4px 4px}
+.drow h3{font-size:18px;line-height:1.1}
+.drow .price{font-size:15px;white-space:nowrap}
+.prow h3{font-size:28px;line-height:1.05}
+.prow .pprice{font-size:20px;white-space:nowrap}
+.panel{position:fixed;z-index:51;display:none;flex-direction:column;box-sizing:border-box;padding:12px;width:min(92vw,440px);max-height:82vh;max-height:82svh;background:#fffefd;color:#16100c;border-radius:30px;box-shadow:0 30px 80px rgba(20,8,0,.45);overflow:hidden}
+.panel.on{display:flex}
+.panel .pbody{flex:1;min-height:0;display:flex;flex-direction:column;gap:12px;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.panel .pbody::-webkit-scrollbar{display:none}
+.panel .x{position:absolute;z-index:3;top:22px;right:22px;width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,254,253,.92);color:#16100c;font:700 22px/1 var(--font);cursor:pointer;opacity:0;box-shadow:0 4px 14px rgba(40,12,0,.25)}
+.panel .x:focus-visible{outline:3px solid #e48c3d}
+.pdet{padding:6px 8px 22px}
+.pdet>*{opacity:0}
+.pdet .mass{font-size:15px;color:#4f4237;margin-bottom:16px}
+.pdet h4{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#4f4237;margin:20px 0 8px}
+.pdet p{font-size:17px;line-height:1.45;font-weight:700}
+.pdet .note{margin-top:22px;font-size:13px;color:#7a6554}
 </style>
 </head>
 <body>
@@ -145,12 +151,12 @@ footer .bottom{grid-column:1/-1;border-top:1px solid rgba(22,16,12,.15);padding-
 <section id="menu">
   <h2>Меню</h2>
   <div class="grid">
-    <article class="dish"><div><h3>Эспрессо двойной</h3><p>Тестовая позиция: плотный, с шапкой крема.</p></div><div class="price">000 ₽</div></article>
-    <article class="dish"><div><h3>Латте</h3><p>Тестовая позиция: мягкий, много молока.</p></div><div class="price">000 ₽</div></article>
-    <article class="dish"><div><h3>Капучино</h3><p>Тестовая позиция: молочная пена и кофе поровну.</p></div><div class="price">000 ₽</div></article>
-    <article class="dish"><div><h3>Американо</h3><p>Тестовая позиция: эспрессо с горячей водой.</p></div><div class="price">000 ₽</div></article>
-    <article class="dish"><div><h3>Раф</h3><p>Тестовая позиция: сливки и ваниль.</p></div><div class="price">000 ₽</div></article>
-    <article class="dish"><div><h3>Флэт уайт</h3><p>Тестовая позиция: двойной эспрессо и тонкая пена.</p></div><div class="price">000 ₽</div></article>
+    <article class="dish"><div class="dimg"></div><div class="drow"><h3>Эспрессо двойной</h3><span class="price">000 ₽</span></div></article>
+    <article class="dish"><div class="dimg"></div><div class="drow"><h3>Латте</h3><span class="price">000 ₽</span></div></article>
+    <article class="dish"><div class="dimg"></div><div class="drow"><h3>Капучино</h3><span class="price">000 ₽</span></div></article>
+    <article class="dish"><div class="dimg"></div><div class="drow"><h3>Американо</h3><span class="price">000 ₽</span></div></article>
+    <article class="dish"><div class="dimg"></div><div class="drow"><h3>Раф</h3><span class="price">000 ₽</span></div></article>
+    <article class="dish"><div class="dimg"></div><div class="drow"><h3>Флэт уайт</h3><span class="price">000 ₽</span></div></article>
   </div>
 </section>
 
@@ -209,15 +215,17 @@ footer .bottom{grid-column:1/-1;border-top:1px solid rgba(22,16,12,.15);padding-
 
 <div class="scrim" id="scrim"></div>
 <div class="panel" id="panel" role="dialog" aria-modal="true" aria-labelledby="p-title">
-  <div class="inner" id="p-inner" style="display:flex;flex-direction:column;min-height:0">
-    <div class="bar"><h3 id="p-title"></h3><button class="x" id="p-close" aria-label="Закрыть">×</button></div>
-    <div class="scroll" id="p-scroll">
+  <button class="x" id="p-close" aria-label="Закрыть">×</button>
+  <div class="pbody" id="p-scroll">
+    <div class="pimg" id="p-img"></div>
+    <div class="prow"><h3 id="p-title"></h3><span class="pprice" id="p-price"></span></div>
+    <div class="pdet" id="p-det">
       <div class="mass" id="p-mass"></div>
       <div class="kbju" id="p-kbju"></div>
-      <h4>Вкус</h4><p id="p-taste"></p>
-      <h4>Подача</h4><p id="p-serve"></p>
-      <h4>Состав</h4><p id="p-comp"></p>
-      <h4>Аллергены</h4><p id="p-all"></p>
+      <section><h4>Вкус</h4><p id="p-taste"></p></section>
+      <section><h4>Подача</h4><p id="p-serve"></p></section>
+      <section><h4>Состав</h4><p id="p-comp"></p></section>
+      <section><h4>Аллергены</h4><p id="p-all"></p></section>
       <div class="note">Тестовые данные. Настоящие значения добавим позже.</div>
     </div>
   </div>
@@ -654,7 +662,7 @@ if (!reduce && matchMedia('(hover:hover)').matches) {
   dishes.forEach(c => c.addEventListener('click', () => { c.style.transition = 'none'; flat(c); void c.offsetWidth; }));
 }
 
-/* ---------- окно позиции: вырастает из плашки ---------- */
+/* ---------- окно позиции: картинка и название остаются на месте и растут вместе с плашкой ---------- */
 const INFO = [
   {name:'Эспрессо двойной', mass:'Объём 60 мл', k:[4,0.3,0.1,0.5], taste:'Плотный и насыщенный, с горчинкой и долгим послевкусием тёмного шоколада.', serve:'Подаётся в маленьком стаканчике, горячим.', comp:'Вода, свежемолотый кофе (двойная порция).', all:'Нет.'},
   {name:'Латте', mass:'Объём 300 мл', k:[190,9.5,9,15], taste:'Мягкий и сливочный, кофе звучит тихо, больше молока и лёгкой сладости.', serve:'Подаётся горячим, сверху молочная пена.', comp:'Эспрессо, молоко, молочная пена.', all:'Молоко.'},
@@ -663,49 +671,72 @@ const INFO = [
   {name:'Раф', mass:'Объём 300 мл', k:[280,7,16,26], taste:'Нежный и сладкий, со сливочной текстурой и ванильным послевкусием.', serve:'Подаётся в большом стаканчике, горячим.', comp:'Эспрессо, сливки, ванильный сахар.', all:'Молоко, сливки.'},
   {name:'Флэт уайт', mass:'Объём 160 мл', k:[140,7,7,11], taste:'Насыщенный кофе с бархатной микропеной, молока ровно столько, чтобы смягчить.', serve:'Подаётся в стаканчике средней величины, горячим.', comp:'Двойной эспрессо, молоко.', all:'Молоко.'}
 ];
+const DISH_ITEM = [0, 1, 3, 4, 6, 7];      // какую нарисованную иллюстрацию показывать у плашки, пока нет фото
 {
-  const scrim = document.getElementById('scrim'), panel = document.getElementById('panel'), inner = document.getElementById('p-inner');
-  const scroller = document.getElementById('p-scroll'), closeBtn = document.getElementById('p-close');
+  const scrim = document.getElementById('scrim'), panel = document.getElementById('panel');
+  const pbody = document.getElementById('p-scroll'), pdet = document.getElementById('p-det');
+  const pimg = document.getElementById('p-img'), ptitle = document.getElementById('p-title'), pprice = document.getElementById('p-price');
+  const closeBtn = document.getElementById('p-close');
+  dishes.forEach((c, i) => { c.querySelector('.dimg').innerHTML = ITEMS[DISH_ITEM[i]].svg; });
   let current = null, busy = false;
-  const fill = d => {
-    document.getElementById('p-title').textContent = d.name;
+  const px = v => v + 'px', EASE = 'cubic-bezier(.2,.8,.2,1)';
+  const fill = (d, card) => {
+    pimg.innerHTML = card.querySelector('.dimg').innerHTML;
+    ptitle.textContent = d.name;
+    pprice.textContent = card.querySelector('.price').textContent;
     document.getElementById('p-mass').textContent = d.mass;
     document.getElementById('p-kbju').innerHTML = [['Ккал', d.k[0]], ['Белки, г', d.k[1]], ['Жиры, г', d.k[2]], ['Углев., г', d.k[3]]].map(([l, v]) => `<div><b>${v}</b><span>${l}</span></div>`).join('');
     document.getElementById('p-taste').textContent = d.taste;
     document.getElementById('p-serve').textContent = d.serve;
     document.getElementById('p-comp').textContent = d.comp;
     document.getElementById('p-all').textContent = d.all;
-    scroller.scrollTop = 0;
   };
-  const flip = (r, f) => {                                    // из прямоугольника плашки в положение окна
-    const dx = (r.left + r.width / 2) - (f.left + f.width / 2), dy = (r.top + r.height / 2) - (f.top + f.height / 2);
-    return `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(${r.width / f.width}, ${r.height / f.height})`;
-  };
+  const box = (r, radius, bg) => ({left: px(r.left), top: px(r.top), width: px(r.width), height: px(r.height), borderRadius: radius, backgroundColor: bg});
   const open = card => {
     if (busy || sheetOpen) return;
     const i = dishes.indexOf(card); if (i < 0 || !INFO[i]) return;
-    busy = true; current = card; sheetOpen = true; fill(INFO[i]);
+    busy = true; current = card; sheetOpen = true;
+    panel.getAnimations({subtree: true}).forEach(a => a.cancel());
+    fill(INFO[i], card);
     document.documentElement.style.overflow = 'hidden'; document.body.style.overflow = 'hidden';
-    const r = card.getBoundingClientRect();
-    panel.classList.add('on'); scrim.classList.add('on');
-    const f = panel.getBoundingClientRect();
-    card.classList.add('open');
-    const a = panel.animate([{transform: flip(r, f), borderRadius: '26px'}, {transform: 'translate(-50%, -50%) scale(1,1)', borderRadius: '30px'}], {duration: reduce ? 1 : 520, easing: 'cubic-bezier(.2,.8,.2,1)'});
-    inner.animate([{opacity: 0}, {opacity: 1}], {duration: reduce ? 1 : 300, delay: reduce ? 0 : 180, easing: 'ease-out', fill: 'both'});
-    a.onfinish = () => { busy = false; closeBtn.focus({preventScroll: true}); };
+    const r = card.getBoundingClientRect(), bg0 = getComputedStyle(card).backgroundColor;
+    // итоговый размер окна измеряем заранее
+    const fw = Math.min(innerWidth * .92, 440);
+    panel.style.cssText = `left:0;top:0;width:${fw}px;height:auto;visibility:hidden`;
+    panel.classList.add('on');
+    const fh = panel.getBoundingClientRect().height;
+    const from = box(r, '26px', bg0);
+    const to = box({left: (innerWidth - fw) / 2, top: (innerHeight - fh) / 2, width: fw, height: fh}, '30px', 'rgb(255, 254, 253)');
+    panel.style.cssText = ''; Object.assign(panel.style, from);
+    pbody.style.overflowY = 'hidden'; pbody.scrollTop = 0;
+    scrim.classList.add('on'); card.classList.add('open');
+    const D = reduce ? 1 : 640;
+    const a = panel.animate([from, to], {duration: D, easing: EASE, fill: 'forwards'});
+    ptitle.animate([{fontSize: '18px'}, {fontSize: '28px'}], {duration: D, easing: EASE, fill: 'forwards'});
+    pprice.animate([{fontSize: '15px'}, {fontSize: '20px'}], {duration: D, easing: EASE, fill: 'forwards'});
+    closeBtn.animate([{opacity: 0}, {opacity: 1}], {duration: reduce ? 1 : 260, delay: reduce ? 0 : D * .7, fill: 'forwards'});
+    [...pdet.children].forEach((el, k) => el.animate([{opacity: 0, transform: 'translateY(16px)'}, {opacity: 1, transform: 'none'}],
+      {duration: reduce ? 1 : 480, delay: reduce ? 0 : D * .6 + k * 75, easing: 'ease-out', fill: 'forwards'}));
+    a.onfinish = () => { Object.assign(panel.style, to); a.cancel(); pbody.style.overflowY = 'auto'; busy = false; closeBtn.focus({preventScroll: true}); };
   };
   const close = () => {
     if (busy || !sheetOpen) return;
     busy = true;
-    const r = current.getBoundingClientRect(), f = panel.getBoundingClientRect();
+    pbody.style.overflowY = 'hidden'; pbody.scrollTop = 0;
+    const r = current.getBoundingClientRect(), bgNow = getComputedStyle(current).backgroundColor, cur = panel.getBoundingClientRect();
     scrim.classList.remove('on');
-    inner.animate([{opacity: 1}, {opacity: 0}], {duration: reduce ? 1 : 160, fill: 'both'});
-    const a = panel.animate([{transform: 'translate(-50%, -50%) scale(1,1)', borderRadius: '30px'}, {transform: flip(r, f), borderRadius: '26px'}], {duration: reduce ? 1 : 420, easing: 'cubic-bezier(.5,0,.2,1)', fill: 'forwards'});
+    const D = reduce ? 1 : 480;
+    pdet.animate([{opacity: 1}, {opacity: 0}], {duration: reduce ? 1 : 150, fill: 'forwards'});
+    closeBtn.animate([{opacity: 1}, {opacity: 0}], {duration: reduce ? 1 : 120, fill: 'forwards'});
+    ptitle.animate([{fontSize: '28px'}, {fontSize: '18px'}], {duration: D, easing: EASE, fill: 'forwards'});
+    pprice.animate([{fontSize: '20px'}, {fontSize: '15px'}], {duration: D, easing: EASE, fill: 'forwards'});
+    const a = panel.animate([box(cur, '30px', 'rgb(255, 254, 253)'), box(r, '26px', bgNow)], {duration: D, easing: 'cubic-bezier(.5,0,.2,1)', fill: 'forwards'});
     a.onfinish = () => {
-      panel.classList.remove('on'); a.cancel();
+      panel.getAnimations({subtree: true}).forEach(x => x.cancel());
+      panel.classList.remove('on'); panel.style.cssText = '';
       current.classList.remove('open'); current.focus({preventScroll: true});
       document.documentElement.style.overflow = ''; document.body.style.overflow = '';
-      sheetOpen = false; busy = false; sy = sty = scrollY; sv.v = 0;
+      sheetOpen = false; busy = false; sy = sty = lastSet = scrollY; sv.v = 0;
     };
   };
   dishes.forEach(c => {
