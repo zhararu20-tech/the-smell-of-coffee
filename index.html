@@ -317,6 +317,8 @@ footer .brand{font-family:'Montserrat','Nunito',sans-serif;font-weight:300;text-
 .credits ul{list-style:none;columns:2 260px;column-gap:28px;margin:6px 0 0}
 .credits li{break-inside:avoid;padding:3px 0;line-height:1.35;overflow-wrap:anywhere}
 .credits a{color:rgba(255,254,253,.85);display:inline;text-decoration:underline;text-underline-offset:2px}
+.dimg,.pimg{background:var(--ct,#fbf4ea)}
+.dimg img,.pimg img{object-fit:contain;background:none;filter:drop-shadow(0 8px 10px rgba(60,30,8,.22))}
 </style>
 </head>
 <body>
@@ -916,78 +918,78 @@ return [
 
 /* фото позиций (Wikimedia Commons, список авторов внизу страницы) и цвет карточек по категориям */
 const PHOTOS = {
- "Эспрессо": "img/menu/espresso-0.webp",
- "Американо": "img/menu/americano-0.webp",
- "Капучино": "img/menu/cappuccino-3.webp",
- "Латте": "img/menu/latte-0.webp",
- "Раф": "img/menu/raf-3.webp",
- "Флэт уайт": "img/menu/flatwhite-3.webp",
- "Айс-капучино": "img/menu/icecapp-2.webp",
- "Айс-латте": "img/menu/icelatte-2.webp",
- "Айс-раф": "img/menu/icelatte-3.webp",
- "Бамбл-кофе": "img/menu/bumble-0.webp",
- "Эспрессо-тоник": "img/menu/esptonic-2.webp",
- "Глясе": "img/menu/glace-0-s2.webp",
- "Чёрный": "img/menu/teablack-3.webp",
- "Зелёный": "img/menu/teagreen-2.webp",
- "Фруктовый": "img/menu/teafruit-2-s2.webp",
- "Облепиха": "img/menu/seabuck-0-s2.webp",
- "Матча": "img/menu/matcha-0.webp",
- "Горячий шоколад": "img/menu/hotchoc-2.webp",
- "Какао": "img/menu/hotchoc-5.webp",
- "Сироп": "img/menu/syrup-0-s2.webp",
- "Сухая смесь": "img/menu/cocoa-0.webp",
- "Альтернатива": "img/menu/plantmilk-0.webp",
- "Доп шот": "img/menu/shot-0.webp",
- "Пирожное «Картошка»": "img/menu/candies-1.webp",
- "Моти": "img/menu/mochi-0.webp",
- "Манго-маракуйя": "img/menu/mango-0-s2.webp",
- "Три шоколада": "img/menu/threechoc-0.webp",
- "Шоколадный тарт с вишней": "img/menu/tart-0.webp",
- "Фисташковое с малиной": "img/menu/pistachio-1.webp",
- "Чизкейк с клубникой": "img/menu/cheesestraw-0.webp",
- "Чизкейк с вишней": "img/menu/cheesecherry-0.webp",
- "Пирожное маскарпоне-малина": "img/menu/mascarpone-0-s2.webp",
- "Макарунс": "img/menu/macaron-2.webp",
- "Эклер": "img/menu/eclair-0.webp",
- "Трубочка со сгущёнкой": "img/menu/cream_horn-1.webp",
- "Пончик": "img/menu/donut-3.webp",
- "Кукис": "img/menu/cookie-0.webp",
- "Круассан в ассортименте": "img/menu/croissant-4.webp",
- "Сэндвич с копчёной грудкой": "img/menu/sandw_chicken-3.webp",
- "Сэндвич с красной рыбой": "img/menu/sandw_salmon-2.webp",
- "Сэндвич на ржаном с курицей": "img/menu/sandw_rye-0.webp",
- "Сэндвич с ростбифом": "img/menu/sandw_beef-1.webp",
- "Сэндвич с курицей в кисло-сладком": "img/menu/sandw_ham2-3-s2.webp",
- "Сэндвич медово-горчичный": "img/menu/sandw_rye-3.webp",
- "Сэндвич ветчина и сыр": "img/menu/sandw_ham-0.webp",
- "Салат с тунцом": "img/menu/salad_tuna-0-s2.webp",
- "Салат греческий": "img/menu/salad_greek-1.webp",
- "Салат с индейкой": "img/menu/salad_turkey-2.webp",
- "Цезарь с курицей": "img/menu/salad_caesar-3.webp",
- "Цезарь ролл": "img/menu/caesar_roll-3.webp",
- "Блины с курицей и грибами": "img/menu/blini_ham-2.webp",
- "Блины с ветчиной и сыром": "img/menu/blini_ham-0.webp",
- "Блины с лососем и творожным сыром": "img/menu/blini_salmon-0-s2.webp",
- "Сырники со сметаной": "img/menu/syrniki-4-s2.webp",
- "Сырники классические": "img/menu/syrniki-2-s2.webp",
- "Мягкие вафли": "img/menu/waffle2-4-s3.webp",
- "Ириски": "img/menu/toffee-1.webp",
- "Конфеты КОКО": "img/menu/candies-0.webp",
- "Орешки микс": "img/menu/nuts-2-s2.webp",
- "Печенье Cookie V Ruki": "img/menu/cookiepack-0.webp",
- "Кофе в зёрнах, 250 г": "img/menu/beans-1.webp",
- "Кофе в зёрнах, 1 кг": "img/menu/beans-0.webp",
- "Вода": "img/menu/water-5.webp",
- "Сок iL": "img/menu/juice-3.webp"
+ "Эспрессо": "img/menu2/01.webp",
+ "Американо": "img/menu2/02.webp",
+ "Капучино": "img/menu2/03.webp",
+ "Латте": "img/menu2/04.webp",
+ "Раф": "img/menu2/05.webp",
+ "Флэт уайт": "img/menu2/06.webp",
+ "Айс-капучино": "img/menu2/07.webp",
+ "Айс-латте": "img/menu2/08.webp",
+ "Айс-раф": "img/menu2/09.webp",
+ "Бамбл-кофе": "img/menu2/10.webp",
+ "Эспрессо-тоник": "img/menu2/11.webp",
+ "Глясе": "img/menu2/12.webp",
+ "Чёрный": "img/menu2/13.webp",
+ "Зелёный": "img/menu2/14.webp",
+ "Фруктовый": "img/menu2/15.webp",
+ "Облепиха": "img/menu2/16.webp",
+ "Матча": "img/menu2/17.webp",
+ "Горячий шоколад": "img/menu2/18.webp",
+ "Какао": "img/menu2/19.webp",
+ "Сироп": "img/menu2/20.webp",
+ "Сухая смесь": "img/menu2/21.webp",
+ "Альтернатива": "img/menu2/22.webp",
+ "Доп шот": "img/menu2/23.webp",
+ "Пирожное «Картошка»": "img/menu2/24.webp",
+ "Моти": "img/menu2/25.webp",
+ "Манго-маракуйя": "img/menu2/26.webp",
+ "Три шоколада": "img/menu2/27.webp",
+ "Шоколадный тарт с вишней": "img/menu2/28.webp",
+ "Фисташковое с малиной": "img/menu2/29.webp",
+ "Чизкейк с клубникой": "img/menu2/30.webp",
+ "Чизкейк с вишней": "img/menu2/31.webp",
+ "Пирожное маскарпоне-малина": "img/menu2/32.webp",
+ "Макарунс": "img/menu2/33.webp",
+ "Эклер": "img/menu2/34.webp",
+ "Трубочка со сгущёнкой": "img/menu2/35.webp",
+ "Пончик": "img/menu2/36.webp",
+ "Кукис": "img/menu2/37.webp",
+ "Круассан в ассортименте": "img/menu2/38.webp",
+ "Сэндвич с копчёной грудкой": "img/menu2/39.webp",
+ "Сэндвич с красной рыбой": "img/menu2/40.webp",
+ "Сэндвич на ржаном с курицей": "img/menu2/41.webp",
+ "Сэндвич с ростбифом": "img/menu2/42.webp",
+ "Сэндвич с курицей в кисло-сладком": "img/menu2/43.webp",
+ "Сэндвич медово-горчичный": "img/menu2/44.webp",
+ "Сэндвич ветчина и сыр": "img/menu2/45.webp",
+ "Салат с тунцом": "img/menu2/46.webp",
+ "Салат греческий": "img/menu2/47.webp",
+ "Салат с индейкой": "img/menu2/48.webp",
+ "Цезарь с курицей": "img/menu2/49.webp",
+ "Цезарь ролл": "img/menu2/50.webp",
+ "Блины с курицей и грибами": "img/menu2/51.webp",
+ "Блины с ветчиной и сыром": "img/menu2/52.webp",
+ "Блины с лососем и творожным сыром": "img/menu2/53.webp",
+ "Сырники со сметаной": "img/menu2/54.webp",
+ "Сырники классические": "img/menu2/55.webp",
+ "Мягкие вафли": "img/menu2/56.webp",
+ "Ириски": "img/menu2/57.webp",
+ "Конфеты КОКО": "img/menu2/58.webp",
+ "Орешки микс": "img/menu2/59.webp",
+ "Печенье Cookie V Ruki": "img/menu2/60.webp",
+ "Кофе в зёрнах, 250 г": "img/menu2/61.webp",
+ "Кофе в зёрнах, 1 кг": "img/menu2/62.webp",
+ "Вода": "img/menu2/63.webp",
+ "Сок iL": "img/menu2/64.webp"
 };
 const CAT_COLORS = {
-  classic: ['#e99443', '#f4b676'], cold: ['#74b9d6', '#a6d3e6'], tea: ['#97c26f', '#bcdc9c'], notcoffee: ['#c98667', '#dfaa90'],
-  extras: ['#e2c34f', '#eed888'], dessert: ['#ec8fa5', '#f5b8c6'], snacks: ['#e9725f', '#f2a092'], sweets: ['#b393d6', '#cfb9e8'], togo: ['#6fb5a5', '#9fcfc3']
+  classic: ['#e99443', '#f4b676', '#fbeee1'], cold: ['#74b9d6', '#a6d3e6', '#e9f4f8'], tea: ['#97c26f', '#bcdc9c', '#eef5e8'], notcoffee: ['#c98667', '#dfaa90', '#f6ece7'],
+  extras: ['#e2c34f', '#eed888', '#faf5e3'], dessert: ['#ec8fa5', '#f5b8c6', '#fcedf1'], snacks: ['#e9725f', '#f2a092', '#fbe8e5'], sweets: ['#b393d6', '#cfb9e8', '#f3eef8'], togo: ['#6fb5a5', '#9fcfc3', '#e8f3f1']
 };
 MENU.forEach(c => c.items.forEach(it => {
   const p = PHOTOS[it.name];
-  if (p) it.art = `<img src="${p}" alt="${it.name}" width="480" height="480" loading="lazy" decoding="async" draggable="false">`;
+  if (p) it.art = `<img src="${p}" alt="${it.name}" width="360" height="450" loading="lazy" decoding="async" draggable="false">`;
 }));
 
 const grid = document.getElementById('grid'), dishes = [];
@@ -1022,7 +1024,7 @@ const glowIO = (GLOW_TOUCH && touchOnly && 'IntersectionObserver' in window) ? n
 let currentCat = MENU[0].id, firstRender = true;
 const renderCat = id => {
   const cat = MENU.find(c => c.id === id); currentCat = id;
-  const col = CAT_COLORS[id] || CAT_COLORS.classic; grid.style.setProperty('--cc', col[0]); grid.style.setProperty('--cch', col[1]);
+  const col = CAT_COLORS[id] || CAT_COLORS.classic; grid.style.setProperty('--cc', col[0]); grid.style.setProperty('--cch', col[1]); grid.style.setProperty('--ct', col[2]);
   dishes.length = 0; grid.innerHTML = '';
   cat.items.forEach(it => {
     const c = document.createElement('article');
@@ -1094,7 +1096,7 @@ if (touchOnly) {                                                      // тел�
   let current = null, busy = false;
   const px = v => v + 'px', EASE = 'cubic-bezier(.2,.8,.2,1)';
   const fill = (d, card) => {
-    pimg.innerHTML = card.querySelector('.dimg').innerHTML;
+    pimg.innerHTML = card.querySelector('.dimg').innerHTML; pimg.style.setProperty('--ct', grid.style.getPropertyValue('--ct'));
     ptitle.textContent = d.name;
     pprice.textContent = card.querySelector('.price').textContent;
     document.getElementById('p-sizes').innerHTML = !d.prices.length ? '<div><b>Цена в кофейне</b><span>Уточняйте у бариста</span></div>' : d.prices.map((p, k) => `<div><b>${d.extra ? '+' : ''}${p} ₽</b><span>${sizeLabels(d)[k]}</span></div>`).join('');
