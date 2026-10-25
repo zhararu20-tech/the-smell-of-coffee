@@ -307,6 +307,16 @@ footer .brand{font-family:'Montserrat','Nunito',sans-serif;font-weight:300;text-
 /* подсветка карточек: светлее оранжевый, а не белый */
 @media (hover:hover){.card:hover{background:#f4b676;box-shadow:0 1px 0 rgba(22,16,12,.08),0 20px 34px -16px rgba(120,50,0,.5)}}
 .card.press,.dish.hot,.dish.glow{background:#f4b676;box-shadow:0 1px 0 rgba(22,16,12,.08),0 20px 34px -16px rgba(120,50,0,.5)}
+/* цвет карточек меню задаёт категория */
+.dish{background:var(--cc,#e99443)}
+.dish.hot,.dish.glow{background:var(--cch,#f4b676)}
+.dimg img{background:#f1e4d0}
+.credits{grid-column:1/-1;font-size:13px;color:rgba(255,254,253,.6)}
+.credits summary{cursor:pointer;width:max-content;max-width:100%;padding:4px 0}
+.credits p{margin:10px 0 6px;line-height:1.45}
+.credits ul{list-style:none;columns:2 260px;column-gap:28px;margin:6px 0 0}
+.credits li{break-inside:avoid;padding:3px 0;line-height:1.35;overflow-wrap:anywhere}
+.credits a{color:rgba(255,254,253,.85);display:inline;text-decoration:underline;text-underline-offset:2px}
 </style>
 </head>
 <body>
@@ -399,6 +409,7 @@ footer .brand{font-family:'Montserrat','Nunito',sans-serif;font-weight:300;text-
     <a href="tel:+70000000000">+7 000 000-00-00</a>
     <a href="mailto:hello@example.com">hello@example.com</a>
   </div>
+  <details class="credits"><summary>Источники фотографий</summary><p>Фотографии блюд и напитков взяты с Wikimedia Commons под свободными лицензиями (CC BY, CC BY-SA, CC0, общественное достояние). Они показывают блюда того же вида и могут отличаться от тех, что подают в кофейне.</p><ul><li><a href="https://commons.wikimedia.org/wiki/File:2019-01-29_19_32_36_Land_O%27Lakes_Cocoa_Classics_Chocolate_Supreme_Hot_Chocolate_Mix_after_being_dumped_into_a_mug_of_hot_water_but_before_being_mixed_in_the_Dulles_section_of_Sterling,_Loudoun_County,_Virginia.jpg" target="_blank" rel="noopener noreferrer">2019-01-29 19 32 36 Land O&#x27;Lakes Cocoa Classics Chocolate Su</a>, Famartin, CC BY-SA 4.0</li><li><a href="https://commons.wikimedia.org/wiki/File:2023-08-02_13_29_19_A_Wawa_Chicken_Caesar_Wrap_in_Westampton_Township,_Burlington_County,_New_Jersey.jpg" target="_blank" rel="noopener noreferrer">2023-08-02 13 29 19 A Wawa Chicken Caesar Wrap in Westampton</a>, Famartin, CC BY-SA 4.0</li><li><a href="https://commons.wikimedia.org/wiki/File:20260916_Minsk_crepes.jpg" target="_blank" rel="noopener noreferrer">20260916 Minsk crepes.jpg</a>, Sergey A. Demidov, CC BY 4.0</li><li><a href="https://commons.wikimedia.org/wiki/File:A_bag_of_coffee_J1.jpg" target="_blank" rel="noopener noreferrer">A bag of coffee J1.jpg</a>, Jamain, CC BY-SA 4.0</li><li><a href="https://commons.wikimedia.org/wiki/File:A_cup_of_Americano_in_Lano_Coffee_(Palembang,_SS).jpg" target="_blank" rel="noopener noreferrer">A cup of Americano in Lano Coffee (Palembang, SS).jpg</a>, Firzafp, CC BY-SA 4.0</li><li><a href="https://commons.wikimedia.org/wiki/File:A_cup_of_black_tea_from_Srimangal_Bangladesh.jpg" target="_blank" rel="noopener noreferrer">A cup of black tea from Srimangal Bangladesh.jpg</a>, Sm faysal, CC BY-SA 4.0</li><li><a href="https://commons.wikimedia.org/wiki/File:A_person_pouring_an_orange_juice_in_a_childs_glass.jpg" target="_blank" rel="noopener noreferrer">A person pouring an orange juice in a childs glass.jpg</a>, Shixart1985, CC BY 2.0</li><li><a href="https://commons.wikimedia.org/wiki/File:BK_Ham_and_Cheese_Sandwich.JPG" target="_blank" rel="noopener noreferrer">BK Ham and Cheese Sandwich.JPG</a>, Jerem43, CC BY-SA 3.0</li><li><a href="https://commons.wikimedia.org/wiki/File:Caffe_Latte_at_Pulse_Cafe.jpg" target="_blank" rel="noopener noreferrer">Caffe Latte at Pulse Cafe.jpg</a>, B adger1, CC0</li><li><a href="https://commons.wikimedia.org/wiki/File:Cappuccino-cup_20230110_104449.jpg" target="_blank" rel="noopener noreferrer">Cappuccino-cup 20230110 104449.jpg</a>, Ioacc1234red, CC BY-SA 4.0</li><li><a href="https://commons.wikimedia.org/wiki/File:Cheese_Sandwich_with_Rye_Bread.jpg" target="_blank" rel="noopener noreferrer">Cheese Sandwich with Rye Bread.jpg</a>, Miscellaneous contributor, CC0</li><li><a href="https://commons.wikimedia.org/wiki/File:Cherry_on_top_-_Flickr_-_Infomastern.jpg" target="_blank" rel="noopener noreferrer">Cherry on top - Flickr - Infomastern.jpg</a>, Susanne Nilsson, CC BY-SA 2.0</li><li><a href="https://commons.wikimedia.org/wiki/File:Chicken_Caesar_Salad_at_French_Market_Restaurant.jpg" target="_blank" rel="noopener noreferrer">Chicken Caesar Salad at French Market Restaurant.jpg</a>, pattyonflickr, CC BY 2.0</li><li><a href="https://commons.wikimedia.org/wiki/File:Choc-Chip-Cookie.jpg" target="_blank" rel="noopener noreferrer">Choc-Chip-Cookie.jpg</a>, Evan-Amos, Public domain</li><li><a href="https://commons.wikimedia.org/wiki/File:Chocolate_candies_with_liqueur.JPG" target="_blank" rel="noopener noreferrer">Chocolate candies with liqueur.JPG</a>, Aleksey Pogrebnoj-Alexandroff, CC BY 3.0</li><li><a href="https://commons.wikimedia.org/wiki/File:Chocolate_candies_with_swirl.jpg" target="_blank" rel="noopener noreferrer">Chocolate candies with swirl.jpg</a>, LongitudeLatitude, CC BY 2.0</li><li><a href="https://commons.wikimedia.org/wiki/File:Closeup_of_bagged_Li%C3%A8ge_waffles.jpg" target="_blank" rel="noopener noreferrer">Closeup of bagged Liège waffles.jpg</a>, Valereee, CC0</li><li><a href="https://commons.wikimedia.org/wiki/File:Coffee_Beans,_color_(28183654506).jpg" target="_blank" rel="noopener noreferrer">Coffee Beans, color (28183654506).jpg</a>, Chuck Grimmett from Yonkers, NY, United States of America, CC0</li><li><a href="https://commons.wikimedia.org/wiki/File:Coffee_Flat_Red.jpg" target="_blank" rel="noopener noreferrer">Coffee Flat Red.jpg</a>, Polina Klekovkina, CC0</li><li><a href="https://commons.wikimedia.org/wiki/File:Coffee-whipped-cream-cream-beverage-aa0a422caefd26a906c74dd5e68db6d8.jpg" target="_blank" rel="noopener noreferrer">Coffee-whipped-cream-cream-beverage-aa0a422caefd26a906c74dd5</a>, Unknown authorUnknown author, CC0</li><li><a href="https://commons.wikimedia.org/wiki/File:Cream_horns_(15466292759).jpg" target="_blank" rel="noopener noreferrer">Cream horns (15466292759).jpg</a>, jeffreyw, CC BY 2.0</li><li><a href="https://commons.wikimedia.org/wiki/File:Croissant_3.jpg" target="_blank" rel="noopener noreferrer">Croissant 3.jpg</a>, Maffeth.opiana, CC BY-SA 4.0</li><li><a href="https://commons.wikimedia.org/wiki/File:Daifuku_1.jpg" target="_blank" rel="noopener noreferrer">Daifuku 1.jpg</a>, No machine-readable author provided. Lyzzy assumed (based on copyright claims)., CC BY 2.5</li><li><a href="https://commons.wikimedia.org/wiki/File:Eclair_Chocolat_LMDC_2.png" target="_blank" rel="noopener noreferrer">Eclair Chocolat LMDC 2.png</a>, LMDCWIKI, CC BY-SA 3.0</li><li><a href="https://commons.wikimedia.org/wiki/File:Espresso_and_tonic,_COFFEE_CITEN,_Akiha,_Niigata,_Niigata,_Japan,_May_2023.jpg" target="_blank" rel="noopener noreferrer">Espresso and tonic, COFFEE CITEN, Akiha, Niigata, Niigata, J</a>, Tail furry, CC BY-SA 4.0</li><li><a href="https://commons.wikimedia.org/wiki/File:Espresso_shot_close-up.jpg" target="_blank" rel="noopener noreferrer">Espresso shot close-up.jpg</a>, Deerpeter, CC BY-SA 4.0</li><li><a href="https://commons.wikimedia.org/wiki/File:FREDDO_CAPPUCCINO_-_Vios_2025-08-08.jpg" target="_blank" rel="noopener noreferrer">FREDDO CAPPUCCINO - Vios 2025-08-08.jpg</a>, Andy Li, CC0</li><li><a href="https://commons.wikimedia.org/wiki/File:Flat_white_coffee_at_Highdown_Gardens,_Worthing,_West_Sussex,_England.jpg" target="_blank" rel="noopener noreferrer">Flat white coffee at Highdown Gardens, Worthing, West Sussex</a>, Acabashi, CC BY-SA 4.0</li><li><a href="https://commons.wikimedia.org/wiki/File:Glazed_doughnut_(773405).jpg" target="_blank" rel="noopener noreferrer">Glazed doughnut (773405).jpg</a>, Unknown authorUnknown author, CC0</li><li><a href="https://commons.wikimedia.org/wiki/File:Gray_espresso_cup_with_amaretto.jpg" target="_blank" rel="noopener noreferrer">Gray espresso cup with amaretto.jpg</a>, Friedrich Haag, CC BY-SA 4.0</li><li><a href="https://commons.wikimedia.org/wiki/File:Greek_Salad_Choriatiki.jpg" target="_blank" rel="noopener noreferrer">Greek Salad Choriatiki.jpg</a>, https://www.flickr.com/photos/zone41/, CC BY 2.0</li><li><a href="https://commons.wikimedia.org/wiki/File:Ham_and_cheese_crepe_(3275485711).jpg" target="_blank" rel="noopener noreferrer">Ham and cheese crepe (3275485711).jpg</a>, Geoff Peters from Vancouver, BC, Canada, CC BY 2.0</li><li><a href="https://commons.wikimedia.org/wiki/File:Happy_Birthday_To_Me_(252745069).jpeg" target="_blank" rel="noopener noreferrer">Happy Birthday To Me (252745069).jpeg</a>, Simone Coletta, CC BY-SA 3.0</li><li><a href="https://commons.wikimedia.org/wiki/File:Hippophae_(Novogrudinina).jpg" target="_blank" rel="noopener noreferrer">Hippophae (Novogrudinina).jpg</a>, Виталий Уайлд, CC BY-SA 4.0</li><li><a href="https://commons.wikimedia.org/wiki/File:Homemade_chicken_tender_sandwich_1.jpg" target="_blank" rel="noopener noreferrer">Homemade chicken tender sandwich 1.jpg</a>, 에그란, CC BY 4.0</li><li><a href="https://commons.wikimedia.org/wiki/File:Homemade_salmon_bagel_sandwich_2.jpg" target="_blank" rel="noopener noreferrer">Homemade salmon bagel sandwich 2.jpg</a>, 에그란, CC BY 4.0</li><li><a href="https://commons.wikimedia.org/wiki/File:Hot_chocolate_drink_(2025).jpg" target="_blank" rel="noopener noreferrer">Hot chocolate drink (2025).jpg</a>, Gpkp, CC BY-SA 4.0</li><li><a href="https://commons.wikimedia.org/wiki/File:Hot_chocolate_in_western.jpg" target="_blank" rel="noopener noreferrer">Hot chocolate in western.jpg</a>, Geoffreyrabbit, CC BY-SA 4.0</li><li><a href="https://commons.wikimedia.org/wiki/File:Ice_Cream_(Pixabay-563808).jpg" target="_blank" rel="noopener noreferrer">Ice Cream (Pixabay-563808).jpg</a>, shixugang, CC0</li><li><a href="https://commons.wikimedia.org/wiki/File:Iced_latte_-_Sugardough_2025-07-01.jpg" target="_blank" rel="noopener noreferrer">Iced latte - Sugardough 2025-07-01.jpg</a>, Andy Li, CC0</li><li><a href="https://commons.wikimedia.org/wiki/File:Iced_latte_-_Trading_Post_Coffee_Roasters_2024-06-21.jpg" target="_blank" rel="noopener noreferrer">Iced latte - Trading Post Coffee Roasters 2024-06-21.jpg</a>, Andy Li, CC0</li><li><a href="https://commons.wikimedia.org/wiki/File:Kirkland_Signature_Drinking_Water_1.5L_20050508.jpg" target="_blank" rel="noopener noreferrer">Kirkland Signature Drinking Water 1.5L 20050508.jpg</a>, Original uploader was Jm51 at en.wikipedia, CC BY-SA 3.0</li><li><a href="https://commons.wikimedia.org/wiki/File:Kirschtorte_Landfrauenart.jpg" target="_blank" rel="noopener noreferrer">Kirschtorte Landfrauenart.jpg</a>, Oxfordian Kissuth, CC BY-SA 3.0</li><li><a href="https://commons.wikimedia.org/wiki/File:Lofthouse_Cookies_Frosted_Sugar_Cookies_(43309204891).jpg" target="_blank" rel="noopener noreferrer">Lofthouse Cookies Frosted Sugar Cookies (43309204891).jpg</a>, Willis Lam, CC BY-SA 2.0</li><li><a href="https://commons.wikimedia.org/wiki/File:Macarons,_French_made_mini_cakes.JPG" target="_blank" rel="noopener noreferrer">Macarons, French made mini cakes.JPG</a>, Nicolas Halftermeyer, CC BY-SA 3.0</li><li><a href="https://commons.wikimedia.org/wiki/File:Mango_mousse_cake_(8201823494).jpg" target="_blank" rel="noopener noreferrer">Mango mousse cake (8201823494).jpg</a>, jh_tan84, CC BY 2.0</li><li><a href="https://commons.wikimedia.org/wiki/File:Matcha_tea_latte_with_rosetta_latte_art.jpg" target="_blank" rel="noopener noreferrer">Matcha tea latte with rosetta latte art.jpg</a>, Irvan Ary Maulana, CC BY-SA 4.0</li><li><a href="https://commons.wikimedia.org/wiki/File:Mixed_Nuts_(Alabama_Extension).jpg" target="_blank" rel="noopener noreferrer">Mixed Nuts (Alabama Extension).jpg</a>, Alabama Extension, CC0</li><li><a href="https://commons.wikimedia.org/wiki/File:Mondays_at_Il_Forno_-_Cheesecake_with_strawberry_sauce.jpg" target="_blank" rel="noopener noreferrer">Mondays at Il Forno - Cheesecake with strawberry sauce.jpg</a>, Alex Dugger, CC BY 2.0</li><li><a href="https://commons.wikimedia.org/wiki/File:Oat_milk_glass_and_bottles.jpg" target="_blank" rel="noopener noreferrer">Oat milk glass and bottles.jpg</a>, Shisma, CC BY 4.0</li><li><a href="https://commons.wikimedia.org/wiki/File:Peet%27s_honeycomb_toffee_(4).jpg" target="_blank" rel="noopener noreferrer">Peet&#x27;s honeycomb toffee (4).jpg</a>, Fumikas Sagisavas, CC0</li><li><a href="https://commons.wikimedia.org/wiki/File:Pistachio_%26_Raspberry_Roulade_-_Jacob%27s_Bakery_%2B_Cafe_2025-08-06.jpg" target="_blank" rel="noopener noreferrer">Pistachio &amp; Raspberry Roulade - Jacob&#x27;s Bakery + Cafe 2025-0</a>, Andy Li, CC0</li><li><a href="https://commons.wikimedia.org/wiki/File:Roast_Beef_Grinder.JPG" target="_blank" rel="noopener noreferrer">Roast Beef Grinder.JPG</a>, Bobsama, CC BY 3.0</li><li><a href="https://commons.wikimedia.org/wiki/File:Roast_beef_and_mustard_on_rye_bread_-_Massachusetts.jpg" target="_blank" rel="noopener noreferrer">Roast beef and mustard on rye bread - Massachusetts.jpg</a>, Daderot, CC0</li><li><a href="https://commons.wikimedia.org/wiki/File:Savoyarde_buckwheat_crepe,_with_prosciutto,_cheese,_potato,_shallots,_cornichons_-_San_Francisco,_CA.jpg" target="_blank" rel="noopener noreferrer">Savoyarde buckwheat crepe, with prosciutto, cheese, potato, </a>, Daderot, CC0</li><li><a href="https://commons.wikimedia.org/wiki/File:Syrniki_with_fruits.jpg" target="_blank" rel="noopener noreferrer">Syrniki with fruits.jpg</a>, Off-shell, CC BY-SA 4.0</li><li><a href="https://commons.wikimedia.org/wiki/File:Syrup_flavored_drinks_almond.jpg" target="_blank" rel="noopener noreferrer">Syrup flavored drinks almond.jpg</a>, Nicholas Gemini, CC BY-SA 4.0</li><li><a href="https://commons.wikimedia.org/wiki/File:Tiramisu_with_blueberries_and_raspberries,_July_2011.jpg" target="_blank" rel="noopener noreferrer">Tiramisu with blueberries and raspberries, July 2011.jpg</a>, Alexis Fam, CC BY 2.0</li><li><a href="https://commons.wikimedia.org/wiki/File:Tuna_Salad_with_sweet_corn.jpg" target="_blank" rel="noopener noreferrer">Tuna Salad with sweet corn.jpg</a>, Adesolive, CC0</li><li><a href="https://commons.wikimedia.org/wiki/File:Turkey_salad_with_dried_tomatoes.jpg" target="_blank" rel="noopener noreferrer">Turkey salad with dried tomatoes.jpg</a>, FotoosVanRobin, CC BY-SA 2.0</li><li><a href="https://commons.wikimedia.org/wiki/File:Var%C5%A1k%C4%97%C4%8Diai.jpg" target="_blank" rel="noopener noreferrer">Varškėčiai.jpg</a>, Sirex at Lithuanian Wikibooks, CC BY-SA 3.0</li><li><a href="https://commons.wikimedia.org/wiki/File:Vg_Toasted_Club_Sandwich_-_T_@_The_Dials_2025-04-12.jpg" target="_blank" rel="noopener noreferrer">Vg Toasted Club Sandwich - T @ The Dials 2025-04-12.jpg</a>, Andy Li, CC0</li><li><a href="https://commons.wikimedia.org/wiki/File:White_cup_with_green_tea_in_it.jpg" target="_blank" rel="noopener noreferrer">White cup with green tea in it.jpg</a>, Douglas P Perkins, CC BY 3.0</li><li><a href="https://commons.wikimedia.org/wiki/File:White_mug_with_red_herbal_Advent_tea_in_Tuntorp.jpg" target="_blank" rel="noopener noreferrer">White mug with red herbal Advent tea in Tuntorp.jpg</a>, W.carter, CC BY-SA 4.0</li></ul></details>
   <div class="bottom"><span>© 2026 Запах кофе</span><span><a href="#hero" style="display:inline">Наверх ↑</a></span></div>
 </footer>
 
@@ -902,9 +913,86 @@ return [
 ];
 })();
 
+
+/* фото позиций (Wikimedia Commons, список авторов внизу страницы) и цвет карточек по категориям */
+const PHOTOS = {
+ "Эспрессо": "img/menu/espresso-0.webp",
+ "Американо": "img/menu/americano-0.webp",
+ "Капучино": "img/menu/cappuccino-3.webp",
+ "Латте": "img/menu/latte-0.webp",
+ "Раф": "img/menu/raf-3.webp",
+ "Флэт уайт": "img/menu/flatwhite-3.webp",
+ "Айс-капучино": "img/menu/icecapp-2.webp",
+ "Айс-латте": "img/menu/icelatte-2.webp",
+ "Айс-раф": "img/menu/icelatte-3.webp",
+ "Бамбл-кофе": "img/menu/bumble-0.webp",
+ "Эспрессо-тоник": "img/menu/esptonic-2.webp",
+ "Глясе": "img/menu/glace-0-s2.webp",
+ "Чёрный": "img/menu/teablack-3.webp",
+ "Зелёный": "img/menu/teagreen-2.webp",
+ "Фруктовый": "img/menu/teafruit-2-s2.webp",
+ "Облепиха": "img/menu/seabuck-0-s2.webp",
+ "Матча": "img/menu/matcha-0.webp",
+ "Горячий шоколад": "img/menu/hotchoc-2.webp",
+ "Какао": "img/menu/hotchoc-5.webp",
+ "Сироп": "img/menu/syrup-0-s2.webp",
+ "Сухая смесь": "img/menu/cocoa-0.webp",
+ "Альтернатива": "img/menu/plantmilk-0.webp",
+ "Доп шот": "img/menu/shot-0.webp",
+ "Пирожное «Картошка»": "img/menu/candies-1.webp",
+ "Моти": "img/menu/mochi-0.webp",
+ "Манго-маракуйя": "img/menu/mango-0-s2.webp",
+ "Три шоколада": "img/menu/threechoc-0.webp",
+ "Шоколадный тарт с вишней": "img/menu/tart-0.webp",
+ "Фисташковое с малиной": "img/menu/pistachio-1.webp",
+ "Чизкейк с клубникой": "img/menu/cheesestraw-0.webp",
+ "Чизкейк с вишней": "img/menu/cheesecherry-0.webp",
+ "Пирожное маскарпоне-малина": "img/menu/mascarpone-0-s2.webp",
+ "Макарунс": "img/menu/macaron-2.webp",
+ "Эклер": "img/menu/eclair-0.webp",
+ "Трубочка со сгущёнкой": "img/menu/cream_horn-1.webp",
+ "Пончик": "img/menu/donut-3.webp",
+ "Кукис": "img/menu/cookie-0.webp",
+ "Круассан в ассортименте": "img/menu/croissant-4.webp",
+ "Сэндвич с копчёной грудкой": "img/menu/sandw_chicken-3.webp",
+ "Сэндвич с красной рыбой": "img/menu/sandw_salmon-2.webp",
+ "Сэндвич на ржаном с курицей": "img/menu/sandw_rye-0.webp",
+ "Сэндвич с ростбифом": "img/menu/sandw_beef-1.webp",
+ "Сэндвич с курицей в кисло-сладком": "img/menu/sandw_ham2-3-s2.webp",
+ "Сэндвич медово-горчичный": "img/menu/sandw_rye-3.webp",
+ "Сэндвич ветчина и сыр": "img/menu/sandw_ham-0.webp",
+ "Салат с тунцом": "img/menu/salad_tuna-0-s2.webp",
+ "Салат греческий": "img/menu/salad_greek-1.webp",
+ "Салат с индейкой": "img/menu/salad_turkey-2.webp",
+ "Цезарь с курицей": "img/menu/salad_caesar-3.webp",
+ "Цезарь ролл": "img/menu/caesar_roll-3.webp",
+ "Блины с курицей и грибами": "img/menu/blini_ham-2.webp",
+ "Блины с ветчиной и сыром": "img/menu/blini_ham-0.webp",
+ "Блины с лососем и творожным сыром": "img/menu/blini_salmon-0-s2.webp",
+ "Сырники со сметаной": "img/menu/syrniki-4-s2.webp",
+ "Сырники классические": "img/menu/syrniki-2-s2.webp",
+ "Мягкие вафли": "img/menu/waffle2-4-s3.webp",
+ "Ириски": "img/menu/toffee-1.webp",
+ "Конфеты КОКО": "img/menu/candies-0.webp",
+ "Орешки микс": "img/menu/nuts-2-s2.webp",
+ "Печенье Cookie V Ruki": "img/menu/cookiepack-0.webp",
+ "Кофе в зёрнах, 250 г": "img/menu/beans-1.webp",
+ "Кофе в зёрнах, 1 кг": "img/menu/beans-0.webp",
+ "Вода": "img/menu/water-5.webp",
+ "Сок iL": "img/menu/juice-3.webp"
+};
+const CAT_COLORS = {
+  classic: ['#e99443', '#f4b676'], cold: ['#74b9d6', '#a6d3e6'], tea: ['#97c26f', '#bcdc9c'], notcoffee: ['#c98667', '#dfaa90'],
+  extras: ['#e2c34f', '#eed888'], dessert: ['#ec8fa5', '#f5b8c6'], snacks: ['#e9725f', '#f2a092'], sweets: ['#b393d6', '#cfb9e8'], togo: ['#6fb5a5', '#9fcfc3']
+};
+MENU.forEach(c => c.items.forEach(it => {
+  const p = PHOTOS[it.name];
+  if (p) it.art = `<img src="${p}" alt="${it.name}" width="480" height="480" loading="lazy" decoding="async" draggable="false">`;
+}));
+
 const grid = document.getElementById('grid'), dishes = [];
 const SIZE_LABELS = {1: ['Порция'], 2: ['Малый', 'Большой'], 3: ['Малый', 'Средний', 'Большой']};
-const priceText = it => it.extra ? '+' + it.prices[0] + ' ₽' : (it.prices.length > 1 ? 'от ' : '') + it.prices[0] + ' ₽';
+const priceText = it => !it.prices.length ? 'цена в кофейне' : it.extra ? '+' + it.prices[0] + ' ₽' : (it.prices.length > 1 ? 'от ' : '') + it.prices[0] + ' ₽';
 const sizeLabels = it => it.labels || (it.extra ? ['К напитку'] : SIZE_LABELS[it.prices.length]);
 const makeReady = c => {
   let t = 0;
@@ -934,6 +1022,7 @@ const glowIO = (GLOW_TOUCH && touchOnly && 'IntersectionObserver' in window) ? n
 let currentCat = MENU[0].id, firstRender = true;
 const renderCat = id => {
   const cat = MENU.find(c => c.id === id); currentCat = id;
+  const col = CAT_COLORS[id] || CAT_COLORS.classic; grid.style.setProperty('--cc', col[0]); grid.style.setProperty('--cch', col[1]);
   dishes.length = 0; grid.innerHTML = '';
   cat.items.forEach(it => {
     const c = document.createElement('article');
@@ -1008,7 +1097,7 @@ if (touchOnly) {                                                      // тел�
     pimg.innerHTML = card.querySelector('.dimg').innerHTML;
     ptitle.textContent = d.name;
     pprice.textContent = card.querySelector('.price').textContent;
-    document.getElementById('p-sizes').innerHTML = d.prices.map((p, k) => `<div><b>${d.extra ? '+' : ''}${p} ₽</b><span>${sizeLabels(d)[k]}</span></div>`).join('');
+    document.getElementById('p-sizes').innerHTML = !d.prices.length ? '<div><b>Цена в кофейне</b><span>Уточняйте у бариста</span></div>' : d.prices.map((p, k) => `<div><b>${d.extra ? '+' : ''}${p} ₽</b><span>${sizeLabels(d)[k]}</span></div>`).join('');
     document.getElementById('p-mass').textContent = d.mass;
     document.getElementById('p-kbju').innerHTML = [['Ккал', d.k[0]], ['Белки, г', d.k[1]], ['Жиры, г', d.k[2]], ['Углев., г', d.k[3]]].map(([l, v]) => `<div><b>${v}</b><span>${l}</span></div>`).join('');
     document.getElementById('p-taste').textContent = d.taste;
