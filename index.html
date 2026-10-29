@@ -616,7 +616,9 @@ cafe.name.setAttribute('opacity','1');
    Для настоящих PNG: в ITEMS замените поле svg на src:'файл.png'. */
 const INK = '#e6ddd0';
 // бумажный стаканчик с крышкой и рукавом: ширина сверху/снизу, высота
-const paper = (wt, wb, h, lid, sleeve) => {
+const LID = '#3b2a20';                                        // крышки у всех стаканчиков одного цвета
+const paper = (wt, wb, h, lidIgnored, sleeve) => {
+  const lid = LID;
   const yt = 94 - h, x0 = 50 - wt/2, x1 = 50 + wt/2, b0 = 50 - wb/2, b1 = 50 + wb/2;
   const ys0 = yt + h*.34, ys1 = yt + h*.74;
   const lx = (y, a) => a + (y - yt) / h * ((a < 50 ? b0 : b1) - a);
@@ -703,7 +705,7 @@ const bottle = liquid => `<svg viewBox="0 0 100 100" aria-hidden="true">
   <path d="M50 60 C45 67 46 73 50 73 C54 73 55 67 50 60Z" fill="${liquid}"/>
 </svg>`;
 const jar = powder => `<svg viewBox="0 0 100 100" aria-hidden="true">
-  <rect x="30" y="10" width="40" height="14" rx="5" fill="#b98a5b"/>
+  <rect x="30" y="10" width="40" height="14" rx="5" fill="#3b2a20"/>
   <rect x="26" y="22" width="48" height="72" rx="12" fill="rgba(255,255,255,.7)" stroke="#d8cdbf" stroke-width="1.5"/>
   <path d="M27.5 54 H72.5 V82 Q72.5 92.5 62 92.5 H38 Q27.5 92.5 27.5 82Z" fill="${powder}"/>
   <rect x="33" y="30" width="34" height="20" rx="5" fill="#fff3e6"/>
