@@ -18,7 +18,7 @@ try { history.scrollRestoration = 'manual'; } catch (e) {}
 </script>
 <title>Запах кофе — кофейня</title>
 <meta name="description" content="Кофейня «Запах кофе»: кофе, свежая выпечка и десерты каждый день. Три точки в Балашихе и Ногинске.">
-<meta name="theme-color" content="#e48c3d">
+<meta name="theme-color" content="#d7a01c">
 <meta property="og:title" content="Запах кофе — кофейня">
 <meta property="og:description" content="Кофе, выпечка и десерты каждый день. Балашиха и Ногинск.">
 <meta property="og:type" content="website">
@@ -327,6 +327,12 @@ footer .brand{font-family:'Montserrat','Nunito',sans-serif;font-weight:300;text-
 .hero-cta a:active{transform:scale(.97)}
 @media (hover:hover){.hero-cta a:hover{background:#fff}}
 @media (prefers-reduced-motion:reduce){.hero-cta a{animation:none}}
+/* эксперимент: тёмно-жёлтый фон первого экрана и такие же плашки в блоке «Наши точки» */
+.bg{background:#d7a01c}
+.bg::after{background:linear-gradient(to bottom,rgba(222,168,36,.78) 0%,rgba(218,164,30,.82) 55%,#d7a01c 82%)}
+.card{background:#d9a31f}
+@media (hover:hover){.card:hover{background:#ebc55f}}
+.card.press{background:#ebc55f}
 </style>
 </head>
 <body>
