@@ -319,6 +319,7 @@ footer .brand{font-family:'Montserrat','Nunito',sans-serif;font-weight:300;text-
 .credits a{color:rgba(255,254,253,.85);display:inline;text-decoration:underline;text-underline-offset:2px}
 .dimg,.pimg{background:var(--ct,#fbf4ea)}
 .dimg img,.pimg img{object-fit:contain;background:none;filter:drop-shadow(0 8px 10px rgba(60,30,8,.22))}
+.dish,.card,.dish.hot,.dish.glow,.dish.ready,.card:hover,.card.press,.mapwrapx,.mapcard{box-shadow:none!important}
 </style>
 </head>
 <body>
@@ -1069,8 +1070,7 @@ if (touchOnly) {                                                      // тел�
       const inside = Math.abs(dx) <= .5 && Math.abs(dy) <= .5;
       const near = Math.max(0, 1 - Math.hypot(dx, dy) / 2.6);              // чем дальше плашка от курсора, тем слабее наклон
       const k = (inside ? 17 : 10 * near) * (touching ? .65 : 1);   // наклон: мышь мягче, палец ещё мягче
-      c.style.setProperty('--ry', (Math.max(-1.6, Math.min(1.6, dx)) * k * (inside ? 1 : .6)).toFixed(2) + 'deg');
-      c.style.setProperty('--rx', (-Math.max(-1.6, Math.min(1.6, dy)) * k * (inside ? 1 : .6)).toFixed(2) + 'deg');
+      // наклона больше нет: плашка под курсором только светлеет
       c.classList.toggle('hot', inside);
     });
   };
